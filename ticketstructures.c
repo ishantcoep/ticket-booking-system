@@ -5,7 +5,7 @@ typedef struct {
 	int price;
 	char seat_nums[20][5];
 	char reviews[128];
-}show[10];
+}movie;
 
 typedef struct {
 	char name[20];
@@ -20,4 +20,4 @@ typedef struct {
 	char *email;
 	char *phonenum;
 	char *password;
-}login[128];
+}details;
