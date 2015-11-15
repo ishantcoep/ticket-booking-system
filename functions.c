@@ -4,45 +4,46 @@
 #include"functions.h"
 
 
+
 char *seatbooking(int a, int b, int d) {
-	int i, j, k, l, m, n, o, v = 65, g, f;
-	char str[3], c[2];
-	int q = 0;
-	FILE *fp;
-	char *ch, filename[15];
-	
-	
+	int i, j, k, v, g = 0, f, y = 0;
+	char str[3], c[2], *ch, filename[15];
+	FILE *fp; 
+
+
 	printf("Now please select your seats:\n");
 	printf("Enter the row number (A, B, C, D, E):\n");
 	printf("Enter 1 for row A\n2 for row B\n3 for row C\n4 for row D\n5 for row E\n");
 	scanf("%d", &f);
 	
-	sprintf(filename, "show%d.txt", a);
 	
+	ch = (char *)malloc(4 * sizeof(char));
 	switch(f) {
 		case 1: 
 			
 			for(k = 0; k < 20; k++) {
-				printf("%s\t", show[a].seat_nums[0][k]);
+				printf("%s  ", show[a].seat_nums[0][k]);
 			}
-						
-			printf("Enter the seat number(Enter the number which is not starred !!):");
+			sprintf(filename, "show%d.txt", a);			
+			printf("\n\nEnter the seat number(Enter the number which is not starred !!):");
 			scanf("%d", &g);
 			fp = fopen(filename, "w");
-			d = 65;
+			v = 65;
+			y = g-1;
 			for(i = 0; i < 5; i++) {
 				for(j = 0; j < 20; j++) {
 					sprintf(str, "%d", j+1);
 					sprintf(c ,"%c", v);
 					strcat(c, str);
 					if(strcmp(show[a].seat_nums[i][j], "*") != 0) {
-						show[a].seat_nums[i][j] = (char *)malloc((strlen(c)+1) * sizeof(char));
 						strcpy(show[a].seat_nums[i][j], c);
+						if(i == 0 && j == y) {
+							strcpy(ch, show[a].seat_nums[i][j]);
+							strcpy(show[a].seat_nums[i][j], "*");   //replaces this string as "*" in the file
+						}
+				
 					}
-					if(i == 0 && j == g) {
-						strcpy(ch, show[a].seat_nums[0][g]);
-						strcpy(show[a].seat_nums[0][g], "*");   //replaces this string as "*" in the file
-					}
+					
 					fprintf(fp, "%s\t", show[a].seat_nums[i][j]); //prints the double array to the file
 				}
 				v++;
@@ -51,59 +52,72 @@ char *seatbooking(int a, int b, int d) {
 			return ch;	
 			break;
     		case 2:
-			for(l = 0; l < 20; l++) {
-				printf("%s   ", show[a].seat_nums[1][l]);
-			}	
-			d = 65;				
-			printf("Enter the seat number(Enter the number which is not starred !!):\n");
+			
+			for(k = 0; k < 20; k++) {
+				printf("%s  ", show[a].seat_nums[1][k]);
+			}
+			sprintf(filename, "show%d.txt", a);			
+			printf("\n\nEnter the seat number(Enter the number which is not starred !!):");
 			scanf("%d", &g);
 			fp = fopen(filename, "w");
+			v = 65;
+			y = g-1;
 			for(i = 0; i < 5; i++) {
-				for(j = 0; j < 20 ; j++) {
+				for(j = 0; j < 20; j++) {
 					sprintf(str, "%d", j+1);
 					sprintf(c ,"%c", v);
 					strcat(c, str);
+					
 					if(strcmp(show[a].seat_nums[i][j], "*") != 0) {
-						show[a].seat_nums[i][j] = (char *)malloc((strlen(c)+1) * sizeof(char));
 						strcpy(show[a].seat_nums[i][j], c);
+						if(i == 1 && j == y) {
+							
+							strcpy(ch, show[a].seat_nums[i][j]);
+							strcpy(show[a].seat_nums[i][j], "*");   //replaces this string as "*" in the file
+						}
+				
 					}
-					if(i == 1 && j == g) {
-						strcpy(ch, show[a].seat_nums[1][g]); 						
-						strcpy(show[a].seat_nums[1][g], "*");
-						 
-					}
-					fprintf(fp, "%s\t", show[a].seat_nums[i][j]);
-						
+					
+					
+					fprintf(fp, "%s\t", show[a].seat_nums[i][j]); //prints the double array to the file
 				}
 				v++;
 			}
-	 		fclose(fp);
-			return ch;
+			fclose(fp);
+			return ch;	
 			break;
     		case 3:
-			for(m = 0; m < 20; m++) {
-				printf("%s   ", show[a].seat_nums[2][m]);
-			}	
-			d = 65;				
-			printf("Enter the seat number(Enter the number which is not starred !!):\n");
+			for(k = 0; k < 20; k++) {
+				printf("%s  ", show[a].seat_nums[2][k]);
+			}
+			sprintf(filename, "show%d.txt", a);			
+			printf("\n\nEnter the seat number(Enter the number which is not starred !!):");
 			scanf("%d", &g);
 			fp = fopen(filename, "w");
+			v = 65;
+			y = g-1;
 			for(i = 0; i < 5; i++) {
-				for(j = 0; j < 20 ; j++) {
+				for(j = 0; j < 20; j++) {
 					sprintf(str, "%d", j+1);
 					sprintf(c ,"%c", v);
 					strcat(c, str);
+					
 					if(strcmp(show[a].seat_nums[i][j], "*") != 0) {
-						show[a].seat_nums[i][j] = (char *)malloc((strlen(c)+1) * sizeof(char));
 						strcpy(show[a].seat_nums[i][j], c);
+						if(i == 2 && j == y) {
+							
+							strcpy(ch, show[a].seat_nums[i][j]);
+							strcpy(show[a].seat_nums[i][j], "*");   //replaces this string as "*" in the file
+						}
+				
 					}
-					if(i == 2 && j == g) {
-						strcpy(ch, show[a].seat_nums[2][g]);						
-						strcpy(show[a].seat_nums[2][g], "*");
-						  
-					}
-					fprintf(fp, "%s\t", show[a].seat_nums[i][j]);
-						
+					/*else {
+						printf("Enter valid seat number !!\n");
+						ticketbookingandpayment();
+						return;					
+					}*/
+					
+					fprintf(fp, "%s\t", show[a].seat_nums[i][j]); //prints the double array to the file
 				}
 				v++;
 			}
@@ -111,64 +125,75 @@ char *seatbooking(int a, int b, int d) {
 			return ch;	
 			break;
     		case 4:
-			for(n = 0; n < 20; n++) {
-				printf("%s   ", show[a].seat_nums[3][n]);
-			}	
-			d = 65;				
-			printf("Enter the seat number(Enter the number which is not starred !!):");
+			for(k = 0; k < 20; k++) {
+				printf("%s  ", show[a].seat_nums[3][k]);
+			}
+			sprintf(filename, "show%d.txt", a);			
+			printf("\n\nEnter the seat number(Enter the number which is not starred !!):");
 			scanf("%d", &g);
 			fp = fopen(filename, "w");
+			v = 65;
+			y = g-1;
 			for(i = 0; i < 5; i++) {
-				for(j = 0; j < 20 ; j++) {
+				for(j = 0; j < 20; j++) {
 					sprintf(str, "%d", j+1);
 					sprintf(c ,"%c", v);
 					strcat(c, str);
+					
 					if(strcmp(show[a].seat_nums[i][j], "*") != 0) {
-						show[a].seat_nums[i][j] = (char *)malloc((strlen(c)+1) * sizeof(char));
 						strcpy(show[a].seat_nums[i][j], c);
+						if(i == 3 && j == y) {
+							
+							strcpy(ch, show[a].seat_nums[i][j]);
+							strcpy(show[a].seat_nums[i][j], "*");   //replaces this string as "*" in the file
+						}
+				
 					}
-					if(i == 3 && j == g) {
-						strcpy(ch, show[a].seat_nums[3][g]); 						
-						strcpy(show[a].seat_nums[3][g], "*");
-						
-					}
-					fprintf(fp, "%s\t", show[a].seat_nums[i][j]);
-						
+					/*else {
+						printf("Enter valid seat number !!\n");
+						ticketbookingandpayment();
+						return;					
+					}*/		
+					fprintf(fp, "%s\t", show[a].seat_nums[i][j]); //prints the double array to the file
 				}
 				v++;
 			}
 			fclose(fp);
-			return ch;				
+			return ch;	
 			break;
 		case 5:
-			for(o = 0; o < 20; o++) {
-				printf("%s   ", show[a].seat_nums[4][o]);
+			for(k = 0; k < 20; k++) {
+				printf("%s  ", show[a].seat_nums[4][k]);
 			}
-			d = 65;				
-			printf("Enter the seat number(Enter the number which is not starred !!):");
+			sprintf(filename, "show%d.txt", a);			
+			printf("\n\nEnter the seat number(Enter the number which is not starred !!):");
 			scanf("%d", &g);
 			fp = fopen(filename, "w");
+			v = 65;
+			y = g-1;
 			for(i = 0; i < 5; i++) {
-				for(j = 0; j < 20 ; j++) {
+				for(j = 0; j < 20; j++) {
 					sprintf(str, "%d", j+1);
 					sprintf(c ,"%c", v);
 					strcat(c, str);
+					
 					if(strcmp(show[a].seat_nums[i][j], "*") != 0) {
-						show[a].seat_nums[i][j] = (char *)malloc((strlen(c)+1) * sizeof(char));
 						strcpy(show[a].seat_nums[i][j], c);
+						if(i == 4 && j == y) {
+							
+							strcpy(ch, show[a].seat_nums[i][j]);
+							strcpy(show[a].seat_nums[i][j], "*");   //replaces this string as "*" in the file
+						}
+				
 					}
-					if(i == 4 && j == g) {
-						strcpy(ch, show[a].seat_nums[3][g]); 						
-						strcpy(show[a].seat_nums[4][g], "*");
-						 
-					}
-					fprintf(fp, "%s\t", show[a].seat_nums[i][j]);
-						
+					
+					
+					fprintf(fp, "%s\t", show[a].seat_nums[i][j]); //prints the double array to the file
 				}
 				v++;
 			}
 			fclose(fp);
-			return ch;				
+			return ch;	
 			break;
 		default :
 			printf("Please enter a valid row number !! ");
@@ -184,9 +209,9 @@ char *seatbooking(int a, int b, int d) {
 int show_display() {
 	
 	int m = 0, j;
-	char str[200];
+	char str[200], *tmp;
 	
-	char *tmp;
+	
 	FILE *s = fopen("shows.txt", "r");
 	
 	while (fgets(str,200,s)) { 
@@ -211,7 +236,7 @@ int show_display() {
 	fclose(s);
 
 	for(j = 0; j < m; j++) {                                       //prints the arrays on the screen
-		printf("\t%d. %s\t%d\t%d\t%d\t%d\n", j+1, show[j].showname, show[j].time, show[j].screen_num, show[j].price, show[j].seats);
+		printf("\t\t\t\t%d. [%s]\t%d:00\t%d\t%d\t%d\n\n", j+1, show[j].showname, show[j].time, show[j].screen_num, show[j].price, show[j].seats);
 	}
 	return m;
 }
@@ -242,31 +267,30 @@ void ticketarray(int a) {
 
 //************************************************ticketbookingandpayment*********************************************************
 void ticketbookingandpayment() {
-	int a, b, d, g, i, h, j, m, t, v, k, x, q = 0, r;
-	char *e, *f, *s, *c;
-	char str[120];
-	char *tmp, *booking_id;
+	int a, b, d = 0, i, h, j, m = 0, t, v, k, x = 0, q = 0, r = 0, l = 0, y = 0;
+	char s[10], c[2], temp[3], filename[15], ch[4], z[20], booking_id[10];;
 	FILE *fp, *fd;
-	char *ch, z[20];
-	char filename[15];
+ 
+	
 	
 	printf("Select the show for which u want to book tickets for :\n");
 	
 	m = show_display();
-	//alphabetical sorting **********************
-	printf("Please enter the current time in the 24-hour format:\n");
+	printf("Please enter the current time in the 24-hour format (Just the hour):");
 	scanf("%d", &x);
 	if(x > 12) {
-		printf("Today's shows after %d:00 :\n", j-12);
+		printf("\n\nToday's shows after %d:00 pm :\n", x-12);
 	}
-	printf("Today's shows after %d:00 :", x);
+	else {	
+		printf("Today's shows after %d:00 am :\n", x);
+	}
 	
-	
-	while(i < m) {
-		if(j < show[i].time) {
-			printf("%d. Showname:%s\tTime:%d\tPrice:%d\n", i+1, show[i].showname, show[i].time, show[i].price);
+	while(l < m) {
+		if(x < show[l].time) {
+			printf("\t\t\t%d. Showname:%s\tTime:%d.00\tPrice:%d\n", l+1, show[l].showname, show[l].time, show[l].price);
+			printf("\n");
 		}
-		i++;
+		l++;
 	}
 	
 	printf("Enter your choice :");
@@ -278,29 +302,29 @@ void ticketbookingandpayment() {
 	fp = fopen(filename, "a+");
 	
 	if(fp == NULL) {
+		fclose(fp);
 		printf("\nMovie is being cancelled for today !! Try anoter show !! sorry for the inconvinience caused !\n");
 		ticketbookingandpayment();
 		return;
 	}
-	fclose(fp);
+	
 	else {
 		show[a].seat_nums[0][0] = (char *)malloc(4 * sizeof(char));
-		fp = fopen(filename, "r");
 		while(fscanf(fp, "%s", show[a].seat_nums[0][0]) != EOF ) {
 			q = -1;
 		}
-	fclose(fp);
 		
-		
+		fclose(fp);
 		if(q == 0) {
-			printf("You are the first person to book a ticket for this show !!\n");
+			printf("\n\t\t\tYou are the first person to book a ticket for this show !!\n");
+			sprintf(filename, "show%d.txt", a);
 			fp = fopen(filename, "w");
 			v = 65;
 			for(i = 0; i < 5; i++) {
 				for(j = 0; j < 20; j++) {
-					sprintf(str, "%d", j+1);
+					sprintf(temp, "%d", j+1);
 					sprintf(c ,"%c", v);
-					strcat(c, str);
+					strcat(c, temp);
 					show[a].seat_nums[i][j] = (char *)malloc((strlen(c)+1));	
 					strcpy(show[a].seat_nums[i][j], c);
 					fprintf(fp, "%s\t", show[a].seat_nums[i][j]);
@@ -309,9 +333,10 @@ void ticketbookingandpayment() {
 			}
 			fclose(fp);
 		}
+		sprintf(filename, "show%d.txt", a);
 		fp = fopen(filename, "r");
-			 for(i = 0; i < 5; i++) {
-				for(j = 0; j < 20; j++) {
+		for(i = 0; i < 5; i++) {
+			for(j = 0; j < 20; j++) {
 				show[a].seat_nums[i][j] = (char *)malloc(4 * sizeof(char));
 				fscanf(fp, "%s\t", show[a].seat_nums[i][j]); 
 			}
@@ -320,18 +345,20 @@ void ticketbookingandpayment() {
 		fclose(fp);
 	}
 	
-	printf("Enter the number of tickets:");
+	printf("Enter the number of tickets you want to book :");
+	
 	scanf("%d", &b);
 		
-	for(d = 0; d < b; d++) {	
+	for(d = 0; d < b; d++) {
 		if(show[a].seats > b) {
-			strcpy(ch, show[a].seat_nums[0][0]);
-			printf("Enter the name of %d viewer:", d+1);
+			
+			printf("Enter the name of %d viewer:\n", d+1);
 			scanf("%s", z);
-			strcpy(show[a].seat[(show[a].seats)].name, z);
+			strcpy(show[a].seat[show[a].seats].name, z);
 			
 			
-			printf("Want to book tickets manually or want to do it the other way\n");
+			printf("Want to\n 1. book tickets manually\n2. use the navigation system\n");
+			printf("Enter your choice :");
 			scanf("%d", &k);
 			switch(k) {
 				case 1 : 
@@ -342,14 +369,32 @@ void ticketbookingandpayment() {
 					fd  = fopen(filename, "a+");
 					sprintf(booking_id, "%d%d", x, show[a].screen_num);
 					strcat(booking_id, ch);
-					fprintf(fd, "%s\t%s\t%s\n", show[a].seat[(show[a].seats)].name, ch, booking_id);
+					fprintf(fd, "%s\t%s\t%s\n", show[a].seat[show[a].seats].name, ch, booking_id);
 					show[a].seats--;
 					fclose(fd);
+					printf("Your ticket :\n");
+					ticketprint(a, b, ch, booking_id); 
 					break;
 			
-				case 2 : 
+				case 2 :
+					strcpy(ch, show[a].seat_nums[0][0]);
+					for(i = 0; i < 5; i++) {
+						for(j = 0; j < 20; j++) { 
+							if(i == 0 && j == 0) {
+								printf("[%s]    ", show[a].seat_nums[i][j]);
+							}
+							else {
+								printf("%s    ", show[a].seat_nums[i][j]);
+							}
+						}
+						printf("\n");
+					}
 					arraynavigation(a, ch, x);
 					show[a].seats--;
+					sprintf(booking_id, "%d%d", x, show[a].screen_num);
+					strcat(booking_id, ch);
+					printf("Your ticket :\n");
+					ticketprint(a, b, ch, booking_id); 
 					break;
 					
 				default :
@@ -358,29 +403,37 @@ void ticketbookingandpayment() {
 					return;
 			}
 		}
-				
+		
 		else { 
 			printf("The show you are trying to book is housefull !! Please select any other show timing !!");
 			ticketbookingandpayment();
 			break;
 		}
+		
+				
+	
 	}
+	
 	fp = fopen("shows.txt", "w");   
-	while(x < m) {
-		fprintf(fp, "%s\t%d\t%d\t%d\t%d\n", show[x].showname, show[x].time, show[x].screen_num, show[x].price, show[x].seats);
-				x++;
+	while(y < m) {
+		fprintf(fp, "%s\t%d\t%d\t%d\t%d\n", show[y].showname, show[y].time, show[y].screen_num, show[y].price, show[y].seats);
+				y++;
 	}
 	fclose(fp);
-	printf("\nplease enter your username !");
+	
+	m = loginarray();
+	
+	printf("\nplease enter your username !\n");
 	scanf("%s", s);
+	
 	while(r < m) {   //c is the index of the login array and will be given as the argument to the function. 
-		if(strcmp(login[r].username, s) == 0) {       //searches if the username is present in the existing file of login ids.
+		if(strcmp(s, login[r].username) == 0) {       //searches if the username is present in the existing file of login ids.
 			printf("\nUsername Found !!\n");
 			t = 1;
 			break;           
 		}
 		r++;
-		}
+	}
 	if(t != 1) { 
 		printf("Username not found.Book once again !!\n");
 		ticketbookingandpayment();
@@ -388,14 +441,9 @@ void ticketbookingandpayment() {
 		}
 	passwordcheck(r);
 
-	
-
-	
 	printf("Congratulations, You have successfully booked your tickets for %d members !! Please carry your ticket with you while coming!!\n", b);
-	printf("Your ticket :\n");
-	ticketprint(a, b, ch);          //check whether the ticket details has been updated or not
 	
-		
+	printf("\n\t\t\tPlease do come back for more tickets and movies !\n");
 }
 
 //****************************************ticketdisplay**************************************************************************		
@@ -403,8 +451,7 @@ void ticketdisplay() {
 	int a;
 	printf("\t\t\t1. Book tickets\n");
 	printf("\t\t\t2. Cancel tickets\n");
-	printf("\t\t\t3. Rate and comment on a movie\n");
-	printf("\t\t\t4. Edit your personal details\n");
+	printf("\t\t\t3. Edit your personal details\n");
 	
 	printf("Enter the choice you want to do:");
 	scanf("%d", &a);
@@ -414,14 +461,10 @@ void ticketdisplay() {
 			ticketbookingandpayment();
 			break;
 		case 2 :
-			//ticketcancellation();
+			ticketcancellation();
 			break;
-			//incomplete***
+		
 		case 3 :
-			//rate_movie();
-			break;
-			//incomplete***
-		case 4 :
 			edit_details();
 			printf("Now please login again !!");
 			repeated_user();
@@ -437,12 +480,8 @@ void ticketdisplay() {
 
 //*****************************************************firsttime*******************************************************************
 void first_time() {
-	int i = 0, j = 0, k = 0, l = 0, n = 0, w;
-	int m = 0;
-	char str[200];
-	char *tmp;
-	
-	
+	int j = 0, k = 0, l = 0, m = 0; 
+
 	FILE *fp;
 	char a[15], b[15], c[15], d[30], e[10], f[15];
 
@@ -451,37 +490,7 @@ void first_time() {
 		printf("File opening failed !");
 	}
 	
-	while (fgets(str,200,fp)) { 
-		
-		tmp = strtok(str,"\t");
-		
-		strcpy(login[m].firstname, tmp);
-
-                tmp = strtok(NULL,"\t");
-		
-		strcpy(login[m].lastname, tmp);
-
-                tmp = strtok(NULL,"\t");
-		
-		strcpy(login[m].username, tmp);
-
-                tmp = strtok(NULL,"\t");
-		
-		strcpy(login[m].email, tmp);
-
-                tmp = strtok(NULL,"\t");
-		
-		strcpy(login[m].phonenum, tmp);
-                
-                tmp = strtok(NULL,"\n");
-		
-                strcpy(login[m].password, tmp);
-                
-                m++;							//prints the file data to the corresponding arrays
-	}
-	
-	
-	fclose(fp);
+	m = loginarray();
 	
 	printf("You are a new user to us. Please register before continuing !!\n\n");
 	
@@ -545,46 +554,12 @@ void first_time() {
 //******************************************repeateduser***************************************************************
 void repeated_user() {
 	int c = 0, m = 0, t = 0;  
-	char str[200];
-	char *tmp;
+
 	char a[10];
-	
-	FILE *fd;
-	
+
 	printf("\n\t\t\tWelcome to the login page !!\n");
-	fd = fopen("login_ids.txt", "r");
 	
-	while (fgets(str,200,fd)) { 
-		
-		tmp = strtok(str,"\t");
-		
-		strcpy(login[m].firstname, tmp);
-
-                tmp = strtok(NULL,"\t");
-		
-		strcpy(login[m].lastname, tmp);
-
-                tmp = strtok(NULL,"\t");
-		
-		strcpy(login[m].username, tmp);
-
-                tmp = strtok(NULL,"\t");
-		
-		strcpy(login[m].email, tmp);
-
-                tmp = strtok(NULL,"\t");
-		
-		strcpy(login[m].phonenum, tmp);
-                
-                tmp = strtok(NULL,"\n");
-		
-                strcpy(login[m].password, tmp);
-                
-                m++;							//prints the file data to the corresponding arrays
-	}
-	
-	fclose(fd);
-
+	m = loginarray();
 	printf("Enter your username :");
 	scanf("%s", a);
 	while(c < m) {   //c is the index of the login array and will be given as the argument to the function. 
@@ -612,6 +587,7 @@ void passwordcheck(int c) {
 	printf("Enter your password :");
 	scanf("%s", b);
 	
+	
 	if(strcmp(login[c].password, b) == 0)
 		printf("Password matched !!\n");
 	else {	
@@ -623,9 +599,9 @@ void passwordcheck(int c) {
 }
 
 //***************************************************ticketprint******************************************************
-void ticketprint(int a, int b, char *ch) {
+void ticketprint(int a, int b, char *ch, char *booking_id) {
 	FILE *fp;
-	int i, j, d;
+	int i, j, f;
 	char filename[15];
 	sprintf(filename, "show%d.txt", a);
 	fp = fopen(filename, "r");
@@ -636,34 +612,32 @@ void ticketprint(int a, int b, char *ch) {
 		}
 	}
 	fclose(fp);
-	for(d = 0; d < b; d++) {
-	printf("\n\n\n\t\t\t****************************************\n\t\t\tNAME OF THE MOVIE:%s \n\t\t\tSEAT NUMBER : %s\n\t\t\tTIME:%d \n\t\t\tSCREEN NO.: %d \n\t\t\tTOTAL PRICE: %d \n\t\t\t****************************************\n", show[a].showname, ch, show[a].time, show[a].screen_num, b*show[a].price); //printing ticket seat number gives problem
+	if(show[a].time > 12) {
+		f = show[a].time - 12;
 	}
+	printf("\n\n\n\t\t\t****************************************\n\t\t\t\tNAME OF THE MOVIE:%s \n\t\t\t\tSEAT NUMBER : %s\n\t\t\t\tTIME:%d \n\t\t\t\tSCREEN NO.: %d \n\t\t\t\tBOOKING ID: %s\n\t\t\t\tTOTAL PRICE: %d \n\t\t\t****************************************\n", show[a].showname, ch, f, show[a].screen_num, booking_id, show[a].price); //printing ticket seat number gives problem
+	
 
-	printf("\n\t\t\tThank You for booking %d tickets from our system !! Have a happy movie !\n", b);
-	printf("\n\t\t\tPlease do come back for more tickets and movies !\n");
+	
 }
 
 //***********************************************************adminpage********************************************************
 void admin_page() {
-	int b;
-	char *z;
-	int m = 0, j, g, a, i;
-	char str[200];
-	char *tmp, *c, *d, *e, *f, h[20], k[20];
+	int b, d = 0, e = 0, x = 0, m = 0, g = 0, a, i, y;
+	char str[200], *tmp, c[25], *h[20], *k[20], *f[20], filename[20], z[12];
 	FILE *fp, *s;
-	char filename[20];
 	printf("\nEnter your secret password !!\n");
 	scanf("%s", z);
 	if(strcmp(z, "ishant@123") == 0)
 		printf("Password is correct");
-	else
+	else {
 		printf("The password you have typed is wrong !! Please login again !");
 		admin_page();
 		return;
+	}
 	printf("\n\t\t\t\tWelcome Admin");
 	
-	printf("\n\t\t\t1.Enter new movie details\n\t\t\t2.List of the members\n\t\t\t3.List of the viewers of a movie\n\t\t\t4.Remove the movie from the list\n\t\t\t5.Change password\n");
+	printf("\n\t\t\t1.Enter new movie details\n\t\t\t2.List of the members\n\t\t\t3.List of the viewers of a movie\n\t\t\t4.Remove the movie from the list\n\t\t\t5. Exit\n");
 	printf("Enter the choice you want to do :");
 	scanf("%d", &b);
 	
@@ -671,18 +645,19 @@ void admin_page() {
 		case 1 :
 			s = fopen("shows.txt", "a+");
 			printf("\nEnter the name of the movie :");
-			scanf("%s", c);
+			scanf(" %[^\n]", c);
 			printf("\nEnter the time of the movie :");
-			scanf("%s", d);
+			scanf("%d", &d);
 			printf("\nEnter the screen number :");
-			scanf("%s", e);
+			scanf("%d", &e);
 			printf("\nEnter the price of the movie :");
-			scanf("%s", f);
+			scanf("%d", &x);
 			printf("Enter the number of tickets :");
 			scanf("%d", &g);
-			fprintf(fp, "%s\t%s\t%s\t%s\t%d\n", c, d, e, f, g);
+			fprintf(s, "%s\t%d\t%d\t%d\t%d\n", c, d, e, x, g);
 			printf("\n\t\t\tUpdate successfull !!!\n");
 			fclose(s);
+			admin_page();
 			break;
 		case 2 :
 			m = 0;
@@ -712,31 +687,42 @@ void admin_page() {
                 			tmp = strtok(NULL,"\n");
 		
                 			strcpy(login[m].password, tmp);
-                			printf("%s\t%s\t%s\t%s\t%s\t%s\n", login[m].firstname, login[m].lastname, login[m].username, login[m].email, login[m].phonenum, login[m].password);
+                			printf("firstname:%s\tlastname:%s\tusername:%s\temail id:%s\tphone number%s\tpassword%s\n", login[m].firstname, login[m].lastname, login[m].username, login[m].email, login[m].phonenum, login[m].password);
                 			m++;	                   //prints the file data to the corresponding arrays
 				}
 				fclose(s);
-			
+			admin_page();
 			break;
 		case 3 :
+			
 			printf("You want to see the viewer's list of which movie ??\n");
 			show_display();
 			printf("Enter your choice :");
 			scanf("%d", &a);
-			sprintf(filename, "show%d_names.txt", a-1);
-			fp = fopen(filename, "r");
+			y = a-1;
+			printf("Name\tSeat Number\tBooking Id");
+			sprintf(filename, "show%d_names.txt", y);
+			fp = fopen(filename, "a+");
+			m = 0;
 			while (fgets(str,200,fp)) { 
 		
 				tmp = strtok(str,"\t");
 		
-				strcpy(h, tmp);
+				strcpy(h[m], tmp);
 
-				tmp = strtok(NULL,"\n");
+				tmp = strtok(NULL,"\t");
 		
-				strcpy(k, tmp);
+				strcpy(k[m], tmp);
 
-				printf("%s\t%s\n", h, k);
+				tmp = strtok(NULL, "\n");
+
+				strcpy(f[m], tmp);
+			
+				m++;
+				printf("[%s]\t[%s]\t[%s]\n", h[m], k[m], f[m]);
 			}
+			fclose(fp);
+			admin_page();
 			break;
 		case 4 :
 			show_display();
@@ -770,7 +756,6 @@ void admin_page() {
 			fclose(s);
 			break;
 		case 5 :
-			admin_pass_change();
 			break;
 		default :
 			printf("Enter a valid choice !!");
@@ -783,9 +768,8 @@ void admin_page() {
 
 //**********************************************arraynavigation*************************************************************************
 void arraynavigation (int a, char *ch, int x) {
-	
-	int b, i, j, t;
-	char filename[20], *booking_id;
+	int b, i, j, t, l;
+	char filename[20], booking_id[10];
 	FILE *fp;
 	printf("Enter '1' for up----'2' for down----'3' for left----'4' for right----'5' to confirm the seat\n");
 	scanf("%d", &b);
@@ -796,6 +780,7 @@ void arraynavigation (int a, char *ch, int x) {
 				for(j = 0; j < 20; j++) {
 					if(strcmp(ch, show[a].seat_nums[i][j]) == 0) {
 						t = i-1;
+						l = j;
 					}
 				}
 			}
@@ -807,14 +792,15 @@ void arraynavigation (int a, char *ch, int x) {
 			else {
 				for(i = 0; i < 5; i++) {
 					for(j = 0; j < 20; j++) {
-						if(i == t) {
-							printf("[%s]\t", show[a].seat_nums[t][j]);
+						if(i == t && j == l) {
+							printf("[%s]    ", show[a].seat_nums[t][j]);
 							strcpy(ch, show[a].seat_nums[t][j]);
 						}
 						else {
-							printf("%s\t", show[a].seat_nums[i][j]);
+							printf("%s    ", show[a].seat_nums[i][j]);
 						}
 					}
+				printf("\n");
 				}
 			}
 			arraynavigation(a, ch, x);
@@ -825,6 +811,7 @@ void arraynavigation (int a, char *ch, int x) {
 				for(j = 0; j < 20; j++) {
 					if(strcmp(ch, show[a].seat_nums[i][j]) == 0) {
 						t = i+1;
+						l = j;
 					}
 				}
 			}
@@ -836,14 +823,15 @@ void arraynavigation (int a, char *ch, int x) {
 			else {				
 				for(i = 0; i < 5; i++) {
 					for(j = 0; j < 20; j++) {
-						if(i == t) {
-							printf("[%s]\t", show[a].seat_nums[t][j]);
+						if(i == t && j == l) {
+							printf("[%s]    ", show[a].seat_nums[t][j]);
 							strcpy(ch, show[a].seat_nums[t][j]);
 						}
 						else {
-							printf("%s\t", show[a].seat_nums[i][j]);
+							printf("%s    ", show[a].seat_nums[i][j]);
 						}
 					}
+				printf("\n");
 				}
 			}
 			arraynavigation(a, ch, x);
@@ -854,6 +842,7 @@ void arraynavigation (int a, char *ch, int x) {
 				for(j = 0; j < 20; j++) {
 					if(strcmp(ch, show[a].seat_nums[i][j]) == 0) {
 						t = j-1;
+						l = i;
 					}
 				}
 			}
@@ -865,14 +854,15 @@ void arraynavigation (int a, char *ch, int x) {
 			else {				
 				for(i = 0; i < 5; i++) {
 					for(j = 0; j < 20; j++) {
-						if(j == t) {
-							printf("[%s]\t", show[a].seat_nums[i][t]);
+						if(i == l && j == t) {
+							printf("[%s]    ", show[a].seat_nums[i][t]);
 							strcpy(ch, show[a].seat_nums[i][t]);
 						}
 						else {
-							printf("%s\t", show[a].seat_nums[i][j]);
+							printf("%s    ", show[a].seat_nums[i][j]);
 						}
 					}
+				printf("\n");				
 				}
 			}
 			arraynavigation(a, ch, x);
@@ -883,6 +873,7 @@ void arraynavigation (int a, char *ch, int x) {
 				for(j = 0; j < 20; j++) {
 					if(strcmp(ch, show[a].seat_nums[i][j]) == 0) {
 						t = j+1;
+						l = i;
 					}
 				}
 			}
@@ -894,14 +885,15 @@ void arraynavigation (int a, char *ch, int x) {
 			else {				
 				for(i = 0; i < 5; i++) {
 					for(j = 0; j < 20; j++) {
-						if(j == t) {
-							printf("[%s]\t", show[a].seat_nums[i][t]);
+						if(i == l && j == t) {
+							printf("[%s]    ", show[a].seat_nums[i][t]);
 							strcpy(ch, show[a].seat_nums[i][t]);
 						}
 						else {
-							printf("%s\t", show[a].seat_nums[i][j]);
+							printf("%s    ", show[a].seat_nums[i][j]);
 						}
 					}
+				printf("\n");
 				}
 			}
 			arraynavigation(a, ch, x);
@@ -909,25 +901,30 @@ void arraynavigation (int a, char *ch, int x) {
 
 		case 5 :
 			sprintf(filename, "show%d.txt", a);
-			fp = fopen(filename, "w");
+			
 			if(strcmp(ch, "*") == 0) {
 				printf("Numbers which are starred are already booked by someone else !!please try another !");
 				arraynavigation(a, ch, x);
 				return;
 			}				
+			else {	
+				fp = fopen(filename, "w");
 				for(i = 0; i < 5; i++) {
 					for(j = 0; j < 20; j++) {
 						if(strcmp(ch, show[a].seat_nums[i][j]) == 0) {
-							strcpy(show[a].seat_nums[i][j], "*"); //this can be coloured**************
+							strcpy(show[a].seat_nums[i][j], "*"); 
 						}
 						fprintf(fp, "%s\t", show[a].seat_nums[i][j]);
-						printf("%s\t", show[a].seat_nums[i][j]);
+						printf("%s    ", show[a].seat_nums[i][j]);
 						
 					}
+				printf("\n");
+				}
+				fclose(fp);			
 			}
-			fclose(fp);
+			
 			sprintf(filename, "show%d_names.txt", a);
-			fp  = fopen(filename, "a+");
+			fp  = fopen(filename, "a");
 			sprintf(booking_id, "%d%d", x, show[a].screen_num);
 			strcat(booking_id, ch);
 			fprintf(fp, "%s\t%s\t%s\n", show[a].seat[(show[a].seats)].name, ch, booking_id);
@@ -945,85 +942,56 @@ void arraynavigation (int a, char *ch, int x) {
 //********************************************editdetails************************************************************
 void edit_details() {
 
-	int a, c = 0, t; 
-	char *d;
-	int m = 0;
+	int a, c = 0, t = 0, e = 0, m = 0; 
+	char d[15], f[15];
 	FILE *s;
-	char str[200], *tmp;
 
 	printf("\nWhat would you like to change ??\n\t\t\t1. Your Username\n\t\t\t2. Your email id\n\t\t\t3. Your Phone number\n\t\t\t4. Your Password\n");
 	printf("Enter your choice :");
 	scanf("%d", &a);
-	s = fopen("login_ids.txt", "r");
-	while (fgets(str,200,s)) { 
-			
-	tmp = strtok(str,"\t");
-		
-	strcpy(login[m].firstname, tmp);
+	m = loginarray();
 
-        tmp = strtok(NULL,"\t");
-		
-	strcpy(login[m].lastname, tmp);
-
-        tmp = strtok(NULL,"\t");
-		
-	strcpy(login[m].username, tmp);
-
-        tmp = strtok(NULL,"\t");
-		
-	strcpy(login[m].email, tmp);
-
-        tmp = strtok(NULL,"\t");
-		
-	strcpy(login[m].phonenum, tmp);
-                
-        tmp = strtok(NULL,"\n");
-		
-        strcpy(login[m].password, tmp);
-        printf("%s\t%s\t%s\t%s\t%s\t%s\n", login[m].firstname, login[m].lastname, login[m].username, login[m].email, login[m].phonenum, login[m].password);
-        m++;	                   //prints the file data to the corresponding arrays
-	}
-				fclose(s);
 	printf("Enter your present username :");
-			scanf("%s", d);
-			while(c < m) {   //c is the index of the login array and will be given as the argument to the function. 
-				if(strcmp(login[c].username, d) == 0) {     
-					t = 1;
-					break;           
-				}
-				c++;
-				}
-			if(t != 1) { 
-				printf("Username not found.Login once again !!\n");
-				ticketdisplay();
-				return;
-				}
+	scanf("%s", d);
+	
+	while(c < m) {   //c is the index of the login array and will be given as the argument to the function. 
+		if(strcmp(login[c].username, d) == 0) {       //searches if the username is present in the existing file of login ids.
+			printf("Username Found !!\n");
+			t = 1;
+			break;           
+		}
+		c++;
+		}
+	if(t != 1) { 
+		printf("Username not found.Login once again !!\n");
+		edit_details();
+		return;
+		}
 	switch(a) {
 
 		case 1 : 
-			
 			printf("Enter your new username :");
-			scanf("%s", d);
-			strcpy(login[c].username, d);
+			scanf("%s", f);
+			strcpy(login[c].username, f);
 			break;
 		case 2 :
 			printf("Your present email id is : %s", login[c].email);
 			printf("Enter your new email id :");
-			scanf("%s", d);
-			strcpy(login[c].username, d);
+			scanf("%s", f);
+			strcpy(login[c].email, f);
 			break;
 		case 3 :
 			
 			printf("Your present Phone Number is : %s", login[c].phonenum);
 			printf("Enter your new phone number :");
-			scanf("%s", d);
-			strcpy(login[c].phonenum, d);
+			scanf("%s", f);
+			strcpy(login[c].phonenum, f);
 			break;
 		case 4 :
 			printf("Your present password is : %s", login[c].password);
 			printf("Enter your new password :");
-			scanf("%s", d);
-			strcpy(login[c].password, d);
+			scanf("%s", f);
+			strcpy(login[c].password, f);
 			break;
 		default :
 			printf("Please enter a valid choice !!");
@@ -1031,18 +999,22 @@ void edit_details() {
 			break;
 
 	}
+	s = fopen("login_ids.txt", "w");
+	while(e < m) {
+	fprintf(s, "%s\t%s\t%s\t%s\t%s\t%s\n", login[e].firstname, login[e].lastname, login[e].username, login[e].email, login[e].phonenum, login[e].password);
+	e++;
+	}
+	fclose(s);
+
 	
 }
 
 //******************************************ticket cancellation **********************************************************
 
 void ticketcancellation () {
-	char *h[100], *k[100], *f[100];
-	char *b, *c, *d;
-	int a, m = 0, g, l, n, v = 65, i, j, r = 0;
-	char filename[20];
+	char *h[100], *k[100], *f[100], str[200], *tmp, temp[5], c[10], d[8], filename[20];
+	int a, m = 0, g, i, j, r = 0, b, x;
 	FILE *fp;
-	char str[200], *tmp;
 	printf("Please select the show for which you want to cancel the tickets :");
 	show_display();
 	printf("Enter your choice :");
@@ -1070,10 +1042,13 @@ void ticketcancellation () {
 			m++;
 	}
 	fclose(fp);
-	printf("Please enter your seat number :");
-	scanf("%s", b);
+	printf("Please enter the row number of your seat (1 for A, 2 for B, 3 for C, 4 for D, 5 for E) :");
+	scanf("%d", &b);
+	printf("Now please enter the seat number :");
+	scanf("%d", &x);
+	sprintf(temp, "%d%d", b, x);
 	while(g < m) {
-		if(strcmp(b, k[g]) == 0) {
+		if(strcmp(temp, k[g]) == 0) {
 			j = 1;
 			break;		
 		}
@@ -1109,25 +1084,11 @@ void ticketcancellation () {
 		return;
 	}
 	
-	sprintf(filename, "show%d.txt", a-1);
+	sprintf(str, "%d", x);
+	sprintf(c ,"%c", b);
+	strcat(c, str);	
+	strcpy(show[a].seat_nums[b][x-1], c);
 	
-	fp = fopen(filename, "r");
-	
-	for(i = 0; i < 5; i++) {
-		for(j = 0; j < 20; j++) {
-			fscanf(fp, "%s\t", show[a].seat_nums[i][j]);
-			if(strcmp(show[a].seat_nums[i][j], b) == 0) {
-				sprintf(str, "%d", j+1);
-				sprintf(c ,"%c", v);
-				strcat(c, str);	
-				strcpy(show[a].seat_nums[i][j], c);
-			}
-				
-		}
-	v++;	
-	}
-	fclose(fp);
-
 	fp = fopen(filename, "w");
 	for(i = 0; i < 5; i++) {
 		for(j = 0; j < 20; j++) {
@@ -1144,5 +1105,45 @@ void ticketcancellation () {
 		}
 		r++;
 	}
+
+}
+
+//******************************loginarray*********************************
+int loginarray() {
+	char *tmp, str[200];
+	FILE *fd;
+	fd = fopen("login_ids.txt", "r");
+	int m = 0;
+	while (fgets(str,200,fd)) { 
+		
+		tmp = strtok(str,"\t");
+		
+		strcpy(login[m].firstname, tmp);
+
+                tmp = strtok(NULL,"\t");
+		
+		strcpy(login[m].lastname, tmp);
+
+                tmp = strtok(NULL,"\t");
+		
+		strcpy(login[m].username, tmp);
+
+                tmp = strtok(NULL,"\t");
+		
+		strcpy(login[m].email, tmp);
+
+                tmp = strtok(NULL,"\t");
+		
+		strcpy(login[m].phonenum, tmp);
+                
+                tmp = strtok(NULL,"\n");
+		
+                strcpy(login[m].password, tmp);
+                
+                m++;							//prints the file data to the corresponding arrays
+	}
+	
+	fclose(fd);
+	return m;
 
 }
