@@ -1,7 +1,5 @@
 typedef struct person {
 	char name[20];
-	char *seat_num[2][2];
-	int booking_id;
 }person;
 
 
@@ -11,7 +9,6 @@ typedef struct movie {
 	int screen_num;
 	int price;
 	char *seat_nums[5][20];
-	char reviews[128];
 	int seats;
 	person seat[100];
 }movie;
@@ -35,10 +32,11 @@ void passwordcheck(int );
 void ticketdisplay();
 void ticketbookingandpayment();
 char *seatbooking(int ,int, int);
-void ticketprint(int ,int, char *);
+void ticketprint(int ,int, char *, char *);
 void ticketarray(int);
 int show_display();
 void arraynavigation(int , char *, int);
 void edit_details();
 void admin_page();
 void ticketcancellation();
+int loginarray();
